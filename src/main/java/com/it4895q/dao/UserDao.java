@@ -13,8 +13,9 @@ import com.it4895q.entity.User;
 public class UserDao {
 	@Autowired
 	EntityManager entityManager;
-	
+
 	public void updateUser(User user) {
 		entityManager.merge(user);
 	}
+
 }

@@ -1,5 +1,7 @@
 package com.it4895q.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,18 +15,20 @@ import com.it4895q.model.RegisterRequest;
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private UserDao userDao;
-	
+
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
 
 	public void save(RegisterRequest user) {
 		User newUser = new User();
-		newUser.setUsername(user.getUsername());
+//		newUser.setUsername(user.getUsername());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-		newUser.setPhone(user.getPhone());
+		newUser.setUsername(user.getUsername());
+		newUser.setFirstName(user.getFirstName());
+		newUser.setLastName(user.getLastName());
 		userRepository.save(newUser);
 	}
 
@@ -33,7 +37,7 @@ public class UserService {
 		updateableUser.setToken(token);
 		userDao.updateUser(updateableUser);
 	}
-	
+
 	public User findByUserName(String username) {
 		return userRepository.findByUsername(username);
 	}

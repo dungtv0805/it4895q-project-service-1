@@ -11,9 +11,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginRequest implements Serializable {
-	private static final long serialVersionUID = 5926468583005150707L;
+public class LoginRequest {
 	private String username;
+	
 	private String password;
+//	private String token;
 
 }

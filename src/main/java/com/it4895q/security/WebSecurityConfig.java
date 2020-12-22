@@ -55,20 +55,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// dont authenticate this particular request
 				.authorizeRequests()
 					.antMatchers("/api/login", "/api/register").permitAll()
-					.antMatchers("/hello").permitAll()
-				
+//					.antMatchers("/hello").permitAll()
+					.antMatchers("/api/hello", "/api/authenticateToken").permitAll()
 				// all other requests need to be authenticated
 				.anyRequest().authenticated()
-				.and()
-					.formLogin()
-					.loginPage("/api/login").permitAll()
-					.defaultSuccessUrl("/hello", true)
-				.and()
-					.logout()
-						.invalidateHttpSession(true)
-						.clearAuthentication(true)
-//						.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-						.logoutSuccessUrl("/logout")
+//				.and()
+//					.formLogin()
+//					.loginPage("/api/login").permitAll()
+//					.defaultSuccessUrl("/hello", true)
+//				.and()
+//					.logout()
+//						.invalidateHttpSession(true)
+//						.clearAuthentication(true)
+////						.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//						.logoutSuccessUrl("/logout")
 				
 				// make sure we use stateless session; session won't be used to
 				// store user's state.
